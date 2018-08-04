@@ -7,7 +7,7 @@ Features present in this project
 4. Liking a card
 5. Showing details of a card
 6. Details of all the users who have liked a particular card
-7. COmmenting feature on cards
+7. Commenting feature on cards
 8. Reply to a particular comment on a card
 9. Lazy loading feature
 10. API to get carddetails of a particular card.
