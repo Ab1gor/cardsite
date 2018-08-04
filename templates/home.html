@@ -1,0 +1,386 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+
+/* Full-width input fields */
+.modal {
+  width: 750px;
+  margin: auto;
+}
+
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+    padding: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #474e5d;
+    padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+ 
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+    color: #f44336;
+    cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+       width: 100%;
+    }
+}
+
+
+	
+</style>
+
+
+
+
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>After login</title>
+</head>
+
+
+
+
+
+
+<body>
+
+	
+
+
+	<div class="container-fluid" style="padding: 0px; background-color: #474747">
+			<div class="col-sm-12" style="background-color: #90AFC5; padding-right: 0px;padding-left: 0px; padding-bottom: 0px; color: white">
+
+				<div class="col-sm-2" style="padding-top: 10px">
+				<a href="{% url 'addcard' %}"><img src="" alt="CardSite Logo"></a>	
+				</div>
+        {% if user.is_authenticated %}
+				<div class="col-sm-2" style="padding-top: 10px">
+          <form method="post" action="{% url 'search' %}" > 
+            {% csrf_token %}
+					<input type="text" name="search" style="color:black" placeholder="Search..">
+          <z class="glyphicon glyphicon-search"></z>
+          <button type="submit" style="display:none"></button> 
+
+          </form>
+				</div>
+
+				<div class="col-sm-6">
+				</div>
+
+				<div class="col-sm-2" style=" padding-left: 0px; background-color: blue; padding-right: 0px">
+    					<button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" style="padding-right: 0px; background-color: #90AFC5;text-align: left; border: 0px solid #90AFC5">
+        Hi {{ user.username }}
+
+    					<span class="caret"></span></button>
+    					<ul class="dropdown-menu" style="text-align: left; background-color: white ; color: black">
+      						<li><a href="{% url 'edit' %}" style="color:black">Account<br> Settings</a></li><br>
+      						<li><a href="{% url 'logout' %}" style="color:black">Log Out</a></li>
+    					</ul>
+
+				</div>
+
+
+			</div>
+
+      <div class="col-sm-12" style="  padding-top: 20px; padding-bottom: 20px">
+
+      
+
+      <div class="col-sm-4">
+      </div>
+
+      
+
+      
+      <div class="col-sm-4" style="padding-top:  10px; padding-bottom: 10px; border : 3px solid silver; background-color: #90AFC5">
+          <form enctype="multipart/form-data" action="{% url 'savecard' %}" method="post" role="form">
+            {% csrf_token %}
+
+        <!--<input type="file" class="filestyle" data-icon="false" > -->
+        {{ form.file }}
+
+          <label for="title" style="padding-top: 5px"><b>Title</b></label> 
+          {{ form.title }}
+          <br>
+
+          <label for="desc"><b>Description</b></label>
+          {{ form.description }}
+        
+          <button type="submit">Add a card</button>
+
+
+
+
+          </form>
+          {% else %}
+    <div class="col-sm-12" style="text-align: center">
+        <h3> You are not logged in </h3>
+        <div class="col-sm-5"></div>
+        <div class="col-sm-2">
+        <a href="/login/"><button class="btn-primary">Go To Login</button></a>
+        <a href="/signup"><button class="btn-primary">Go To Signup</button></a>
+      </div>
+      </div>
+    {% endif %}
+            
+
+
+      </div>
+
+      <div class="col-sm-4">
+      </div>
+
+      </div>
+
+
+
+
+    
+
+
+  {% if user.is_authenticated %}
+    
+
+    {% for obj in object %}
+
+    {% if obj.private == True or obj.private == False %}
+    {% if obj.user == user.id or obj.private == False %}
+    
+    <div class= "col-sm-4 cards" style="border: 3px solid #474747; margin-bottom: 20px; background-color: #90AFC5; height: 1000px">
+    
+      <img src="{{ obj.model_pic }}" alt="card image" style="width: 100%; padding-top: 20px"><br>
+      
+      
+      
+     {{ obj.title }} <br>
+    {{ obj.description }} <br>
+    {{ obj.user }} <br>
+    {{ obj.pub_date }}<br>
+       <div class="col-sm-2"></div><br>
+
+      <div class="col-sm-4"> 
+
+      
+     <form method="post" action="{% url 'addlike' %}">
+      {% csrf_token %}
+      <input type="hidden" name="card_id" value="{{obj.id}}">
+      <input type="hidden" name="like_status" value="{{obj.status}}">
+
+
+     <button type="type" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>{{ obj.status }} </button>
+
+     </form>
+    
+
+     Liked by : {{ obj.count }} <br>
+     {% for likes in obj.likes %}
+     {% for lik in likes.user.all %}
+     {{ lik }},
+     {% endfor %}
+     {% endfor %}
+     </div><dir class="col-sm-8"></dir><br><br><br>
+
+
+     <form action="" method="post">
+  {% csrf_token %}
+  
+  <br><br>
+  {{ obj.card.like }}
+
+  
+  
+</form>
+</form>
+
+     <form action="{% url 'addcomment' %}" method="post">    
+      {% csrf_token %}
+  <div class="form-group">
+    {{ comment.title }}
+  </div>
+  <div class="form-group">
+    <input type="hidden" name="card_id" value="{{obj.id}}">
+    </div>
+  <div class="col-sm-8"></div>
+     <div class="col-sm-4">
+      <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-comment"></span> Comment</button>
+    </div>
+    </form>
+    <br><br>
+     {% for comments in obj.comment %}
+         <h4 style="background-color: #336B87;color: black">{{ comments.user }} said : {{ comments.usercomment }} <br>
+         {{ comments.pub_date }}</h4>
+         <div style="text-align: right">
+          {% for reply in comments.reply.all %} <z style="color:green"> {{ reply.user }} replied :</z> {{ reply.text }} <br>  {% endfor %}
+
+         <form method="post" action="{% url 'reply' %}">
+          {% csrf_token %}
+          <input type="text" name="reply1" placeholder="Send your reply" style=" background-color: silver">
+          <input type="hidden" name="comment_id" value="{{ comments.id }}">
+          <button class="btn-sm btn-danger" type="submit" style="display: none"></button>
+        </form>
+      </div>
+
+
+    {% endfor %}
+      <br><br><br>
+      </div>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+  {% endif %}
+
+
+
+{% if user.is_authenticated %}
+  {% if request.path == "/" %}
+  <div class="col-sm-12">
+  <div class="col-sm-5"></div>
+      <div class="col-sm-2">
+        <a href="{% url 'addcard' %}"><button class="btn-primary btn-lg" style="margin-bottom: 30px">Go Top</button></a>
+  </div>
+  </div>
+
+  {% else %}
+  <div class="col-sm-12">
+  <div class="col-sm-5"></div>
+      <div class="col-sm-2">
+        <a href="{% url 'addcard' %}"><button class="btn-primary btn-lg" style="margin-bottom: 30px">Go Home</button></a>
+  </div>
+  </div>
+  {% endif %}
+  {% endif %}
+
+  </div>
+
+
+
+
+
+
+<script>
+// Get the modal
+$(".cards").slice(3).hide();
+
+ var mincount = 3;
+ var maxcount = 6;
+
+
+ $(window).scroll(function () {
+     if ($(window).scrollTop() + $(window).height() >= $(document).height() - 50) {
+         $(".cards").slice(mincount, maxcount).slideDown(3000);
+
+         mincount = mincount + 0;
+         maxcount = maxcount + 3;
+
+     }
+ });
+
+
+
+var modallogin = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modallogin) {
+        modallogin.style.display = "none";
+    }
+}
+
+</script>
+
+
+
+
+
+
+</body>
+
+</html>

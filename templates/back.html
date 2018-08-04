@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>After login</title>
+</head>
+<body>
+
+
+	<div class="container-fluid" style="padding: 0px">
+			<div class="col-sm-12" style="background-color: #90AFC5; padding-right: 0px;padding-left: 0px; padding-bottom: 0px; color: white">
+
+				<div class="col-sm-2" style="padding-top: 10px">
+					<a href="{% url 'addcard' %}"><img src="" alt="CardSite Logo"></a>	
+				</div>
+        {% if user.is_authenticated %}
+				<div class="col-sm-2" style="padding-top: 10px">
+          <form method="post" action="{% url 'addcard' %}" >
+            {% csrf_token %}
+					<input type="text" name="search" style="color:black" placeholder="Search..">
+          <z class="glyphicon glyphicon-search"></z>
+          <button type="submit" style="display:none"></button> 
+
+          </form>
+				</div>
+
+				<div class="col-sm-6">
+				</div>
+
+				<div class="col-sm-2" style=" padding-left: 0px; background-color: #90AFC5; padding-right: 0px">
+    					<button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" style="padding-right: 0px; background-color: #90AFC5;text-align: left; border: 0px solid #90AFC5">
+        Hi {{ user.username }}
+
+    					<span class="caret"></span></button>
+    					<ul class="dropdown-menu" style="text-align: left; background-color: white ; color: black">
+      						<li><a href="{% url 'edit' %}" style="color:black">Account<br> Settings</a></li><br>
+      						<li><a href="{% url 'logout' %}" style="color:black">Log Out</a></li>
+    					</ul>
+
+				</div>
+		{% endif %}
+
+
+			</div>
+
+			<div class="col-sm-5"></div>
+			<div class="col-sm-2">
+				<a href="{% url 'addcard' %}"><button class="btn-primary btn-lg">Go Back</button></a>
+
+
+
+		</div>
+	</div>
+
+</body>
+</html>

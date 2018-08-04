@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>Edit details</title>
+</head>
+
+
+<body>
+	<div class="container-fluid" style="padding: 0px">
+			<div class="col-sm-12" style="background-color: silver; padding-right: 0px;padding-left: 0px; padding-bottom: 0px">
+
+				<div class="col-sm-2" style="padding-top: 10px">
+					<img src="" alt="CardSite Logo">	
+				</div>
+
+				<div class="col-sm-9">
+				</div>
+
+
+				<div class="col-sm-1" style=" padding-left: 0px; background-color: blue; padding-right: 0px">
+
+				</div>
+
+			</div>
+
+
+
+
+
+		<form action="" method="post" role="form">
+            {% csrf_token %}
+
+        		<!--<input type="file" class="filestyle" data-icon="false" > -->
+
+          <label for="title" style="padding-top: 5px"><b>Title</b></label> 
+          {{ form.title }}
+          <br>
+
+          <label for="desc"><b>Description</b></label>
+          {{ form.description }}
+        
+          <button type="submit">Add a card</button>
+		</form>
+	</div>
+</body>
+</html>

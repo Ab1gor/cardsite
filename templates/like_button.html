@@ -1,0 +1,11 @@
+<form action="{%url 'like_button'  %}" method="post">
+	{% csrf_token %}
+	{% if is_liked %}
+<button type="type" class="btn btn-primary" id="like" name="like" value="{{ like.id }}"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Like</button>
+
+
+	{% else %}
+
+<button type="submit" name="dislike" id="like" value= "{{ like.id }}">Dislike</button>
+	
+	{% endif %}
