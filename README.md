@@ -10,5 +10,6 @@ Features present in this project
 7. COmmenting feature on cards
 8. Reply to a particular comment on a card
 9. Lazy loading feature
+10. API to get carddetails of a particular card.
 
 To install all the dependencies required to run the project . Do 'pip install -r requirements.txt'
