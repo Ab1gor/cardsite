@@ -9,7 +9,7 @@ django>=2.0.8
 django-cors-headers==2.4.0
 django-pagination==1.0.7
 django-phonenumber-field==2.0.0
-djangorestframework==3.8.2
+djangorestframework==3.9.1
 djangorestframework-jwt==1.11.0
 idna==2.7
 ipdb==0.11
